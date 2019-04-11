@@ -110,4 +110,21 @@ router.get('/:director_id', (req, res) => {
     })
 });
 
+router.put('/:director_id', (req, res, next) => {
+    const promise = Director.findByIdAndUpdate(
+        req.params.director_id,
+        req.body,
+        {
+            new: true
+        }
+    );
+    promise.then((director) => {
+        if (!director)
+            next({message: 'The Director was not found'});
+        res.json(director);
+    }).catch((err) => {
+        res.json(err);
+    })
+});
+
 module.exports = router;
