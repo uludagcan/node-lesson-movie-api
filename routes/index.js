@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 /* GET home page. */
-router.get('/register', (req, res, next) => {
+router.get('/', (req, res, next) => {
     res.render('index', {title: 'Express'});
 });
 
