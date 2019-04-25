@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const should = chai.should();
+
 const server = require('../../app');
 
 chai.use(chaiHttp);
@@ -59,7 +59,7 @@ describe('/api/movies tests', () => {
         });
     });
 
-    describe('/GET:director_id movie', () => {
+    describe('/GET/:director_id movie', () => {
         it('it should GET a movie by the given id', (done) => {
             chai.request(server)
                 .get('/api/movies/' + movieId)
@@ -79,7 +79,7 @@ describe('/api/movies tests', () => {
         });
     });
 
-    describe('/PUT:director_id movie', () => {
+    describe('/PUT/:director_id movie', () => {
         it('it should UPDATE a movie given by id', (done) => {
             const movie = {
                 title: '93Creative',
@@ -103,6 +103,20 @@ describe('/api/movies tests', () => {
                     res.body.should.have.property('year').eql(movie.year);
                     res.body.should.have.property('imdb_score').eql(movie.imdb_score);
 
+                    done();
+                });
+        });
+    });
+
+    describe('/DELETE/director_id movie', () => {
+        it('it should DELETE a movie given by id', (done) => {
+            chai.request(server)
+                .delete('/api/movies/' + movieId)
+                .set('x-access-token', token)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('status').eql(1);
                     done();
                 });
         });
