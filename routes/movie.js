@@ -66,7 +66,7 @@ router.post('/', (req, res) => {
     });*/
     const promise = movie.save();
     promise.then((data) => {
-        res.json({status: 1});
+        res.json(data);
     }).catch((err) => {
         res.json(err);
     });
