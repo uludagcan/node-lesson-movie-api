@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const Director = require('../models/Director');
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
     const director = new Director(req.body);
     const promise = director.save();
 
