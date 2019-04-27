@@ -1,3 +1,4 @@
+[![Build status](https://api.travis-ci.org/uludagcan/node-lesson-movie-api.svg)](https://travis-ci.org/uludagcan/node-lesson-movie-api)
 # node-lesson-movie-api
 Node.JS Learn Series-Movie API
 
